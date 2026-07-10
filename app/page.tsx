@@ -40,7 +40,7 @@ export default function HomePage() {
               Building drones and rockets, and the{' '}
               <span className="text-accent">flight control systems</span> that fly them.
             </h1>
-            <p className="mt-6 max-w-2xl text-lg leading-relaxed text-muted-foreground text-pretty">
+            <p className="mt-6 max-w-2xl text-lg leading-relaxed text-muted-foreground text-pretty" style={{ fontFamily: '"Montserrat", sans-serif' }}>
               I&apos;m Brian, currently a Year 12 High School student in Sydney working on
               robotics and aerospace projects. You&apos;ll find all my current projects on this
               blog, everything from high power rockets to self flying drones, and even
@@ -112,16 +112,8 @@ export default function HomePage() {
               </h2>
             </div>
             <div className="space-y-4 text-lg leading-relaxed text-muted-foreground">
-              <p>
-                This site is my open engineering notebook. Every project here is
-                something I&apos;ve designed, soldered, tuned, and flown myself — usually
-                breaking a few propellers and fins along the way.
-              </p>
-              <p>
-                I care most about flight control: the sensor fusion, the tuning, and
-                the firmware that turns a pile of carbon and lithium into something
-                that flies predictably. Each writeup includes the specs, the design
-                decisions, and the mistakes worth remembering.
+              <p style={{ fontFamily: '"Montserrat", sans-serif' }}>
+                This site is essentially my engineering build log. It contains almost all of my projects and will be continually updated as more come.
               </p>
             </div>
           </div>
