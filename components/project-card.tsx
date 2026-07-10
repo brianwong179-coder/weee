@@ -3,13 +3,8 @@ import Link from 'next/link'
 import { ArrowUpRight } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import type { Project } from '@/lib/projects'
+import { categoryStyles } from '@/lib/projects'
 import { StatusBadge } from '@/components/status-badge'
-
-const categoryStyles: Record<Project['category'], string> = {
-  Drone: 'bg-sky/15 text-sky border border-sky/30',
-  Rocket: 'bg-accent/15 text-accent border border-accent/30',
-  'Flight Control': 'bg-foreground/10 text-foreground border border-border',
-}
 
 export function ProjectCard({ project }: { project: Project }) {
   return (

@@ -7,7 +7,8 @@ import { SiteHeader } from '@/components/site-header'
 import { SiteFooter } from '@/components/site-footer'
 import { StatusBadge } from '@/components/status-badge'
 import { ProjectCard } from '@/components/project-card'
-import { getProject, projects } from '@/lib/projects'
+import { cn } from '@/lib/utils'
+import { getProject, projects, categoryStyles } from '@/lib/projects'
 
 export function generateStaticParams() {
   return projects.map((project) => ({ slug: project.slug }))
@@ -46,17 +47,25 @@ export default async function ProjectPage({
       <main className="flex-1">
         <article>
           {/* Header */}
-          <div className="border-b border-border">
+          <div className="relative overflow-hidden border-b border-border">
+            <div
+              aria-hidden="true"
+              className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(55%_120%_at_10%_0%,color-mix(in_oklch,var(--sky)_16%,transparent),transparent_60%),radial-gradient(45%_100%_at_100%_0%,color-mix(in_oklch,var(--accent)_14%,transparent),transparent_55%)]"
+            />
+            <div
+              aria-hidden="true"
+              className="pointer-events-none absolute inset-0 -z-10 opacity-[0.35] [background-image:linear-gradient(to_right,var(--border)_1px,transparent_1px),linear-gradient(to_bottom,var(--border)_1px,transparent_1px)] [background-size:56px_56px] [mask-image:radial-gradient(70%_90%_at_50%_10%,black,transparent)]"
+            />
             <div className="mx-auto max-w-4xl px-5 py-12">
               <Link
                 href="/projects"
-                className="inline-flex items-center gap-1.5 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+                className="inline-flex items-center gap-1.5 text-sm font-medium text-muted-foreground transition-colors hover:text-accent"
               >
                 <ArrowLeft className="size-4" />
                 All projects
               </Link>
               <div className="mt-6 flex flex-wrap items-center gap-3">
-                <span className="rounded-full border border-border px-2.5 py-0.5 font-mono text-xs font-medium">
+                <span className={cn('rounded-full px-2.5 py-0.5 font-mono text-xs font-medium', categoryStyles[project.category])}>
                   {project.category}
                 </span>
                 <StatusBadge status={project.status} />
@@ -109,7 +118,8 @@ export default async function ProjectPage({
             {/* Spec sidebar */}
             <aside className="order-1 lg:order-2">
               <div className="rounded-lg border border-border bg-card p-5 lg:sticky lg:top-24">
-                <h2 className="font-mono text-xs uppercase tracking-widest text-muted-foreground">
+                <h2 className="flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-muted-foreground">
+                  <span className="size-1.5 rounded-full bg-accent" aria-hidden="true" />
                   Specifications
                 </h2>
                 <dl className="mt-4 divide-y divide-border">
@@ -132,7 +142,7 @@ export default async function ProjectPage({
                   {project.stack.map((item) => (
                     <span
                       key={item}
-                      className="rounded-md bg-secondary px-2 py-1 font-mono text-xs"
+                      className="rounded-md border border-sky/25 bg-sky/10 px-2 py-1 font-mono text-xs text-sky"
                     >
                       {item}
                     </span>
