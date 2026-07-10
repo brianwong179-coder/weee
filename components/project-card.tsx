@@ -1,14 +1,21 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { ArrowUpRight } from 'lucide-react'
+import { cn } from '@/lib/utils'
 import type { Project } from '@/lib/projects'
 import { StatusBadge } from '@/components/status-badge'
+
+const categoryStyles: Record<Project['category'], string> = {
+  Drone: 'bg-sky/15 text-sky border border-sky/30',
+  Rocket: 'bg-accent/15 text-accent border border-accent/30',
+  'Flight Control': 'bg-foreground/10 text-foreground border border-border',
+}
 
 export function ProjectCard({ project }: { project: Project }) {
   return (
     <Link
       href={`/projects/${project.slug}`}
-      className="group flex flex-col overflow-hidden rounded-lg border border-border bg-card transition-colors hover:border-accent/50"
+      className="group flex flex-col overflow-hidden rounded-lg border border-border bg-card transition-all hover:-translate-y-0.5 hover:border-accent/50 hover:shadow-lg hover:shadow-accent/5"
     >
       <div className="relative aspect-[4/3] overflow-hidden bg-secondary">
         <Image
@@ -18,7 +25,12 @@ export function ProjectCard({ project }: { project: Project }) {
           sizes="(max-width: 768px) 100vw, 33vw"
           className="object-cover transition-transform duration-500 group-hover:scale-105"
         />
-        <span className="absolute left-3 top-3 rounded-full bg-background/85 px-2.5 py-0.5 font-mono text-xs font-medium backdrop-blur-sm">
+        <span
+          className={cn(
+            'absolute left-3 top-3 rounded-full px-2.5 py-0.5 font-mono text-xs font-medium backdrop-blur-sm',
+            categoryStyles[project.category],
+          )}
+        >
           {project.category}
         </span>
       </div>
