@@ -7,6 +7,7 @@ import { SiteHeader } from '@/components/site-header'
 import { SiteFooter } from '@/components/site-footer'
 import { StatusBadge } from '@/components/status-badge'
 import { ProjectCard } from '@/components/project-card'
+import { Reveal, Stagger, StaggerItem } from '@/components/motion'
 import { cn } from '@/lib/utils'
 import { getProject, projects, categoryStyles } from '@/lib/projects'
 
@@ -59,12 +60,12 @@ export default async function ProjectPage({
             <div className="mx-auto max-w-4xl px-5 py-12">
               <Link
                 href="/projects"
-                className="inline-flex items-center gap-1.5 text-sm font-medium text-muted-foreground transition-colors hover:text-accent"
+                className="group inline-flex items-center gap-1.5 text-sm font-medium text-muted-foreground transition-colors hover:text-accent"
               >
-                <ArrowLeft className="size-4" />
+                <ArrowLeft className="size-4 transition-transform duration-300 group-hover:-translate-x-1" />
                 All projects
               </Link>
-              <div className="mt-6 flex flex-wrap items-center gap-3">
+              <Reveal immediate className="mt-6 flex flex-wrap items-center gap-3">
                 <span className={cn('rounded-full px-2.5 py-0.5 font-mono text-xs font-medium', categoryStyles[project.category])}>
                   {project.category}
                 </span>
@@ -72,52 +73,60 @@ export default async function ProjectPage({
                 <span className="font-mono text-xs text-muted-foreground">
                   {project.year}
                 </span>
-              </div>
-              <h1 className="mt-4 text-3xl font-semibold tracking-tight text-balance sm:text-4xl">
-                {project.title}
-              </h1>
-              <p className="mt-4 max-w-2xl text-lg leading-relaxed text-muted-foreground text-pretty">
-                {project.summary}
-              </p>
+              </Reveal>
+              <Reveal immediate delay={0.08}>
+                <h1 className="mt-4 text-3xl font-semibold tracking-tight text-balance sm:text-4xl">
+                  {project.title}
+                </h1>
+              </Reveal>
+              <Reveal immediate delay={0.16}>
+                <p className="mt-4 max-w-2xl text-lg leading-relaxed text-muted-foreground text-pretty">
+                  {project.summary}
+                </p>
+              </Reveal>
             </div>
           </div>
 
           {/* Cover */}
           <div className="border-b border-border bg-secondary/40">
             <div className="mx-auto max-w-4xl px-5 py-10">
-              <div className="relative aspect-[16/9] overflow-hidden rounded-lg border border-border bg-secondary">
-                <Image
-                  src={project.cover || '/placeholder.svg'}
-                  alt={project.title}
-                  fill
-                  sizes="(max-width: 896px) 100vw, 896px"
-                  className="object-cover"
-                  priority
-                />
-              </div>
+              <Reveal direction="none" duration={0.8}>
+                <div className="shine group relative aspect-[16/9] overflow-hidden rounded-lg border border-border bg-secondary">
+                  <Image
+                    src={project.cover || '/placeholder.svg'}
+                    alt={project.title}
+                    fill
+                    sizes="(max-width: 896px) 100vw, 896px"
+                    className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                    priority
+                  />
+                </div>
+              </Reveal>
             </div>
           </div>
 
           {/* Body */}
           <div className="mx-auto grid max-w-4xl gap-12 px-5 py-14 lg:grid-cols-[1fr_260px]">
-            <div className="order-2 space-y-10 lg:order-1">
+            <Stagger className="order-2 space-y-10 lg:order-1">
               {project.sections.map((section) => (
-                <section key={section.heading}>
-                  <h2 className="text-xl font-semibold tracking-tight">
-                    {section.heading}
-                  </h2>
-                  <div className="mt-3 space-y-4 leading-relaxed text-muted-foreground">
-                    {section.body.map((paragraph, i) => (
-                      <p key={i}>{paragraph}</p>
-                    ))}
-                  </div>
-                </section>
+                <StaggerItem key={section.heading}>
+                  <section>
+                    <h2 className="text-xl font-semibold tracking-tight">
+                      {section.heading}
+                    </h2>
+                    <div className="mt-3 space-y-4 leading-relaxed text-muted-foreground">
+                      {section.body.map((paragraph, i) => (
+                        <p key={i}>{paragraph}</p>
+                      ))}
+                    </div>
+                  </section>
+                </StaggerItem>
               ))}
-            </div>
+            </Stagger>
 
             {/* Spec sidebar */}
             <aside className="order-1 lg:order-2">
-              <div className="rounded-lg border border-border bg-card p-5 lg:sticky lg:top-24">
+              <Reveal direction="left" className="rounded-lg border border-border bg-card p-5 lg:sticky lg:top-24">
                 <h2 className="flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-muted-foreground">
                   <span className="size-1.5 rounded-full bg-accent" aria-hidden="true" />
                   Specifications
@@ -148,7 +157,7 @@ export default async function ProjectPage({
                     </span>
                   ))}
                 </div>
-              </div>
+              </Reveal>
             </aside>
           </div>
         </article>
@@ -157,23 +166,25 @@ export default async function ProjectPage({
         {related.length > 0 && (
           <section className="border-t border-border bg-secondary/40">
             <div className="mx-auto max-w-6xl px-5 py-14">
-              <div className="flex items-center justify-between gap-4">
+              <Reveal className="flex items-center justify-between gap-4">
                 <h2 className="text-xl font-semibold tracking-tight">
                   More {project.category} builds
                 </h2>
                 <Link
                   href="/projects"
-                  className="inline-flex items-center gap-1.5 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+                  className="group inline-flex items-center gap-1.5 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
                 >
                   All projects
-                  <ArrowUpRight className="size-4" />
+                  <ArrowUpRight className="size-4 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
                 </Link>
-              </div>
-              <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              </Reveal>
+              <Stagger className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
                 {related.map((p) => (
-                  <ProjectCard key={p.slug} project={p} />
+                  <StaggerItem key={p.slug}>
+                    <ProjectCard project={p} />
+                  </StaggerItem>
                 ))}
-              </div>
+              </Stagger>
             </div>
           </section>
         )}
