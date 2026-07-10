@@ -1,5 +1,11 @@
 export type Category = 'Drone' | 'Rocket' | 'Flight Control'
 
+export const categoryStyles: Record<Category, string> = {
+  Drone: 'bg-sky/15 text-sky border border-sky/30',
+  Rocket: 'bg-accent/15 text-accent border border-accent/30',
+  'Flight Control': 'bg-foreground/10 text-foreground border border-border',
+}
+
 export type Spec = { label: string; value: string }
 
 export type Section = { heading: string; body: string[] }

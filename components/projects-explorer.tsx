@@ -28,8 +28,8 @@ export function ProjectsExplorer() {
             className={cn(
               'rounded-full border px-4 py-1.5 text-sm font-medium transition-colors',
               active === filter
-                ? 'border-primary bg-primary text-primary-foreground'
-                : 'border-border text-muted-foreground hover:bg-secondary hover:text-foreground',
+                ? 'border-accent bg-accent text-accent-foreground'
+                : 'border-border text-muted-foreground hover:border-accent/40 hover:bg-accent/5 hover:text-foreground',
             )}
           >
             {filter}
