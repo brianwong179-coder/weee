@@ -29,9 +29,9 @@ const sourceSans3 = Source_Sans_3({
 })
 
 export const metadata: Metadata = {
-  title: 'Flightline — Robotics, Drones & Rocketry',
+  title: 'Brian Wong — Robotics, Drones & Rocketry',
   description:
-    'A personal engineering log documenting custom drones, high-power rockets, and the flight control systems that fly them.',
+    "Brian Wong's personal engineering log documenting custom drones, high-power rockets, and the flight control systems that fly them.",
   generator: 'v0.app',
 }
 

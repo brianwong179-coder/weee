@@ -4,7 +4,7 @@ import { SiteFooter } from '@/components/site-footer'
 import { ProjectsExplorer } from '@/components/projects-explorer'
 
 export const metadata: Metadata = {
-  title: 'Projects — Flightline',
+  title: 'Projects — Brian Wong',
   description: 'Drones, rockets, and flight control systems, documented build by build.',
 }
 

@@ -16,7 +16,7 @@ export function SiteHeader() {
             <Rocket className="size-4" aria-hidden="true" />
           </span>
           <span className="font-mono text-sm font-semibold tracking-tight">
-            FLIGHTLINE
+            BRIAN WONG
           </span>
         </Link>
         <nav className="flex items-center gap-1" aria-label="Primary">
