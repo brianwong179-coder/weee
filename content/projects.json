@@ -290,30 +290,47 @@
     ]
   },
   {
-    "slug": "yurs",
-    "title": "yurs",
+    "slug": "hermes",
+    "title": "Hermes Flight Controller",
     "category": "Flight Control",
-    "tagline": "ywu",
-    "summary": "hmmy es i think fancy",
-    "status": "Bench Testing",
-    "year": "1977",
-    "cover": "/projects/blahaj-yeeter.jpg",
+    "tagline": "Hermes, the no-compromises flight controller",
+    "summary": "A highly capable STM32H743 based no compromises flight controller",
+    "status": "Flying",
+    "year": "2026",
+    "cover": "/projects/hermes.png",
     "stack": [
-      "yes",
-      "no",
-      "uwu"
+      "STM32H743",
+      "BMI088",
+      "LSM6DS3",
+      "BME280",
+      "MAX7456",
+      "MicroSD",
+      "Ardupilot",
+      "KiCad"
     ],
     "specs": [
       {
-        "label": "hmm",
-        "value": "yes i think so"
+        "label": "MCU",
+        "value": "STM32H743 480MHz"
+      },
+      {
+        "label": "IMU",
+        "value": "BMI088 + LSM6DS3"
+      },
+      {
+        "label": "Baro",
+        "value": "BME280"
+      },
+      {
+        "label": "I/O",
+        "value": "4x UART, 1x SPI, CAM/VTX, 2x i2c + Qwiic, CAN"
       }
     ],
     "sections": [
       {
-        "heading": "yes",
+        "heading": "The Board",
         "body": [
-          "no but yes"
+          "Hermes is a flight controller designed in KiCad and AutoDesk Fusion360. It consists of a 4 layer PCB centred around the STM32H743 MCU. It is designed as a no-compromises flight controller, being as powerful as possible whilst still being easy to tinker with."
         ]
       }
     ]
