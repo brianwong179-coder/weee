@@ -50,7 +50,7 @@ export default function HomePage() {
         </section>
 
         {/* About */}
-        <section id="about" className="border-t border-border bg-secondary/40">
+        <section id="about" className="sunrise-tint border-t border-border bg-secondary/40">
           <div className="mx-auto grid max-w-6xl gap-10 px-5 py-16 sm:py-20 lg:grid-cols-[1fr_1.4fr]">
             <Reveal direction="right">
               <p className="font-mono text-sm text-sky">// about</p>

@@ -333,6 +333,46 @@
   animation: blob-c 30s ease-in-out infinite;
 }
 
+/* Subtle sunrise tint for section backgrounds — carries the hero palette
+   across the whole site at low intensity so everything stays readable. */
+.sunrise-tint {
+  background-image:
+    radial-gradient(
+      55% 90% at 0% 0%,
+      color-mix(in oklch, var(--accent) 11%, transparent),
+      transparent 60%
+    ),
+    radial-gradient(
+      50% 90% at 100% 0%,
+      color-mix(in oklch, var(--rose) 9%, transparent),
+      transparent 60%
+    ),
+    radial-gradient(
+      60% 100% at 50% 120%,
+      color-mix(in oklch, var(--sky) 11%, transparent),
+      transparent 60%
+    );
+}
+
+.sunrise-tint-strong {
+  background-image:
+    radial-gradient(
+      55% 100% at 0% 0%,
+      color-mix(in oklch, var(--accent) 17%, transparent),
+      transparent 62%
+    ),
+    radial-gradient(
+      50% 100% at 100% 10%,
+      color-mix(in oklch, var(--rose) 15%, transparent),
+      transparent 62%
+    ),
+    radial-gradient(
+      60% 110% at 50% 120%,
+      color-mix(in oklch, var(--sky) 15%, transparent),
+      transparent 62%
+    );
+}
+
 /* Film-grain texture overlay */
 .grain-overlay {
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 240 240' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.55'/%3E%3C/svg%3E");

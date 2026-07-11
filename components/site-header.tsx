@@ -29,7 +29,7 @@ export function SiteHeader() {
           <motion.span
             whileHover={reduce ? undefined : { rotate: -12, scale: 1.08 }}
             transition={{ type: 'spring', stiffness: 320, damping: 14 }}
-            className="flex size-8 items-center justify-center rounded-md bg-primary text-primary-foreground"
+            className="bg-gradient-warm flex size-8 items-center justify-center rounded-md text-white shadow-sm shadow-accent/20"
           >
             <Rocket className="size-4" aria-hidden="true" />
           </motion.span>

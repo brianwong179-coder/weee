@@ -24,7 +24,7 @@ export function HomeHero() {
   const item = itemVariants(reduce)
 
   return (
-    <section className="relative overflow-hidden border-b border-black/10 text-neutral-900">
+    <section className="relative overflow-hidden border-b border-black/10 font-[family-name:var(--font-montserrat)] text-neutral-900">
       <SunriseBackdrop />
 
       <motion.div
@@ -46,15 +46,16 @@ export function HomeHero() {
 
         <motion.h1
           variants={item}
-          className="mt-6 max-w-5xl text-5xl font-bold leading-[0.95] tracking-[-0.03em] text-balance sm:text-7xl lg:text-8xl"
+          className="mt-6 max-w-5xl text-5xl font-bold leading-[0.98] tracking-[-0.03em] text-balance sm:text-7xl lg:text-[5.5rem]"
         >
-          Building drones, rockets &amp; the systems that fly them.
+          Building drones and rockets, and the{' '}
+          <span className="text-gradient-warm">flight control systems</span> that fly
+          them.
         </motion.h1>
 
         <motion.p
           variants={item}
           className="mt-8 max-w-2xl text-lg leading-relaxed text-neutral-700 text-pretty sm:text-xl"
-          style={{ fontFamily: '"Montserrat", sans-serif' }}
         >
           I&apos;m Brian, a Year 12 student in Sydney building robotics and aerospace
           projects. This is my open build log — high-power rockets, self-flying drones,

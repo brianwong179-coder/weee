@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import {
   animate,
   motion,
@@ -24,25 +24,38 @@ const container: Variants = {
 }
 
 function CountUp({ value }: { value: string }) {
-  const match = value.match(/^([\d.]+)(.*)$/)
-  const target = match ? parseFloat(match[1]) : 0
-  const suffix = match ? match[2] : value
-  const decimals = match && match[1].includes('.') ? 1 : 0
+  // Parse once so the pieces are stable primitives (a fresh `value.match()`
+  // array on every render would retrigger the effect and stop the animation
+  // partway, leaving the wrong final number).
+  const { target, prefix, suffix, decimals, parsed } = useMemo(() => {
+    const m = value.match(/^(\D*)([\d.]+)(.*)$/)
+    return {
+      parsed: Boolean(m),
+      prefix: m ? m[1] : '',
+      target: m ? parseFloat(m[2]) : 0,
+      suffix: m ? m[3] : '',
+      decimals: m && m[2].includes('.') ? 1 : 0,
+    }
+  }, [value])
 
   const ref = useRef<HTMLSpanElement>(null)
   const inView = useInView(ref, { once: true, margin: '-60px' })
   const reduce = useReducedMotion()
-  const [display, setDisplay] = useState(reduce ? value : `0${decimals ? '.0' : ''}${suffix}`)
+  const [display, setDisplay] = useState(
+    !parsed || reduce ? value : `${prefix}0${decimals ? '.0' : ''}${suffix}`,
+  )
 
   useEffect(() => {
-    if (!inView || reduce || !match) return
+    if (!inView || reduce || !parsed) return
     const controls = animate(0, target, {
       duration: 1.4,
       ease: EASE,
-      onUpdate: (v) => setDisplay(`${v.toFixed(decimals)}${suffix}`),
+      onUpdate: (v) => setDisplay(`${prefix}${v.toFixed(decimals)}${suffix}`),
+      // guarantee the animation lands on the exact target value
+      onComplete: () => setDisplay(value),
     })
     return () => controls.stop()
-  }, [inView, reduce, target, suffix, decimals, match])
+  }, [inView, reduce, parsed, target, prefix, suffix, decimals, value])
 
   return <span ref={ref}>{display}</span>
 }
@@ -54,7 +67,7 @@ export function HomeStats() {
   }
 
   return (
-    <section className="border-b border-border bg-secondary/40">
+    <section className="sunrise-tint border-b border-border bg-secondary/40">
       <motion.div
         className="mx-auto grid max-w-6xl grid-cols-2 divide-x divide-y divide-border border-border sm:grid-cols-4 sm:divide-y-0"
         variants={container}
