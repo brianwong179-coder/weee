@@ -25,7 +25,9 @@ export default function HomePage() {
         <section className="mx-auto max-w-6xl px-5 py-16 sm:py-20">
           <Reveal className="flex items-end justify-between gap-4">
             <div>
-              <h2 className="text-2xl font-semibold tracking-tight">Featured builds</h2>
+              <h2 className="text-2xl font-semibold tracking-tight">
+                Featured <span className="text-gradient-warm">builds</span>
+              </h2>
               <p className="mt-2 text-muted-foreground">
                 A selection of what&apos;s currently on the bench and in the air.
               </p>
@@ -53,7 +55,7 @@ export default function HomePage() {
             <Reveal direction="right">
               <p className="font-mono text-sm text-sky">// about</p>
               <h2 className="mt-3 text-2xl font-semibold tracking-tight text-balance">
-                Notes from the workbench.
+                Notes from the <span className="text-gradient-cool">workbench.</span>
               </h2>
             </Reveal>
             <Reveal delay={0.12}>

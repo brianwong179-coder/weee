@@ -21,7 +21,7 @@ export function ProjectCard({ project }: { project: Project }) {
     >
       <Link
         href={`/projects/${project.slug}`}
-        className="group flex h-full flex-col overflow-hidden rounded-lg border border-border bg-card transition-colors duration-300 hover:border-accent/50 hover:shadow-lg hover:shadow-accent/10"
+        className="gradient-ring group flex h-full flex-col overflow-hidden rounded-lg border border-border bg-card transition-colors duration-300 hover:border-transparent hover:shadow-lg hover:shadow-accent/10"
       >
         <div className="shine relative aspect-[4/3] overflow-hidden bg-secondary">
           <Image

@@ -28,6 +28,8 @@
   --color-accent: var(--accent);
   --color-sky: var(--sky);
   --color-sky-foreground: var(--sky-foreground);
+  --color-rose: var(--rose);
+  --color-teal: var(--teal);
   --color-muted-foreground: var(--muted-foreground);
   --color-muted: var(--muted);
   --color-secondary-foreground: var(--secondary-foreground);
@@ -67,6 +69,20 @@
   --accent-foreground: oklch(0.99 0.005 60);
   --sky: oklch(0.6 0.13 230);
   --sky-foreground: oklch(0.99 0.005 230);
+  --rose: oklch(0.64 0.22 18);
+  --teal: oklch(0.7 0.13 195);
+  /* analogous, same-temperature gradient ramps */
+  --gradient-warm: linear-gradient(
+    100deg,
+    oklch(0.72 0.19 62),
+    oklch(0.66 0.19 41) 45%,
+    oklch(0.64 0.22 18)
+  );
+  --gradient-cool: linear-gradient(
+    120deg,
+    oklch(0.7 0.13 195),
+    oklch(0.6 0.13 230)
+  );
   --destructive: oklch(0.577 0.245 27.325);
   --border: oklch(0.9 0.005 250);
   --input: oklch(0.9 0.005 250);
@@ -105,6 +121,19 @@
   --accent-foreground: oklch(0.18 0.02 40);
   --sky: oklch(0.72 0.14 230);
   --sky-foreground: oklch(0.18 0.02 250);
+  --rose: oklch(0.68 0.21 18);
+  --teal: oklch(0.76 0.13 195);
+  --gradient-warm: linear-gradient(
+    100deg,
+    oklch(0.78 0.18 62),
+    oklch(0.7 0.19 41) 45%,
+    oklch(0.68 0.21 18)
+  );
+  --gradient-cool: linear-gradient(
+    120deg,
+    oklch(0.76 0.13 195),
+    oklch(0.72 0.14 230)
+  );
   --destructive: oklch(0.704 0.191 22.216);
   --border: oklch(1 0 0 / 12%);
   --input: oklch(1 0 0 / 16%);
@@ -143,6 +172,19 @@
     --accent-foreground: oklch(0.18 0.02 40);
     --sky: oklch(0.72 0.14 230);
     --sky-foreground: oklch(0.18 0.02 250);
+    --rose: oklch(0.68 0.21 18);
+    --teal: oklch(0.76 0.13 195);
+    --gradient-warm: linear-gradient(
+      100deg,
+      oklch(0.78 0.18 62),
+      oklch(0.7 0.19 41) 45%,
+      oklch(0.68 0.21 18)
+    );
+    --gradient-cool: linear-gradient(
+      120deg,
+      oklch(0.76 0.13 195),
+      oklch(0.72 0.14 230)
+    );
     --destructive: oklch(0.704 0.191 22.216);
     --border: oklch(1 0 0 / 12%);
     --input: oklch(1 0 0 / 16%);
@@ -242,6 +284,70 @@
 
 .animate-float-y {
   animation: float-y 4s ease-in-out infinite;
+}
+
+@keyframes gradient-shift {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+/* ---- Gradient utilities ---- */
+.text-gradient-warm {
+  background-image: var(--gradient-warm);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: gradient-shift 8s ease infinite;
+}
+
+.text-gradient-cool {
+  background-image: var(--gradient-cool);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: gradient-shift 8s ease infinite;
+}
+
+.bg-gradient-warm {
+  background-image: var(--gradient-warm);
+  background-size: 150% 150%;
+}
+
+.bg-gradient-cool {
+  background-image: var(--gradient-cool);
+  background-size: 150% 150%;
+}
+
+/* Animated gradient border wrapper */
+.gradient-ring {
+  position: relative;
+}
+.gradient-ring::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: var(--gradient-warm);
+  background-size: 200% 200%;
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.gradient-ring:hover::before {
+  opacity: 1;
+  animation: gradient-shift 4s ease infinite;
 }
 
 /* Shine sweep on hover for elements marked .shine */

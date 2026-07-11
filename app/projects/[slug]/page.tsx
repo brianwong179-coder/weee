@@ -51,7 +51,7 @@ export default async function ProjectPage({
           <div className="relative overflow-hidden border-b border-border">
             <div
               aria-hidden="true"
-              className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(55%_120%_at_10%_0%,color-mix(in_oklch,var(--sky)_16%,transparent),transparent_60%),radial-gradient(45%_100%_at_100%_0%,color-mix(in_oklch,var(--accent)_14%,transparent),transparent_55%)]"
+              className="animate-aurora pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(50%_120%_at_8%_0%,color-mix(in_oklch,var(--teal)_18%,transparent),transparent_55%),radial-gradient(45%_110%_at_55%_-10%,color-mix(in_oklch,var(--sky)_16%,transparent),transparent_55%),radial-gradient(45%_100%_at_100%_0%,color-mix(in_oklch,var(--accent)_18%,transparent),transparent_55%)]"
             />
             <div
               aria-hidden="true"
@@ -75,7 +75,7 @@ export default async function ProjectPage({
                 </span>
               </Reveal>
               <Reveal immediate delay={0.08}>
-                <h1 className="mt-4 text-3xl font-semibold tracking-tight text-balance sm:text-4xl">
+                <h1 className="text-gradient-warm mt-4 text-3xl font-semibold tracking-tight text-balance sm:text-4xl">
                   {project.title}
                 </h1>
               </Reveal>

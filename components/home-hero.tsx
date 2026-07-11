@@ -27,7 +27,7 @@ export function HomeHero() {
       {/* colored backdrop, slowly drifting */}
       <div
         aria-hidden="true"
-        className="animate-aurora pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(60%_120%_at_15%_0%,color-mix(in_oklch,var(--sky)_18%,transparent),transparent_60%),radial-gradient(50%_100%_at_100%_100%,color-mix(in_oklch,var(--accent)_16%,transparent),transparent_55%)]"
+        className="animate-aurora pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(55%_110%_at_12%_0%,color-mix(in_oklch,var(--teal)_22%,transparent),transparent_55%),radial-gradient(45%_90%_at_85%_10%,color-mix(in_oklch,var(--sky)_20%,transparent),transparent_55%),radial-gradient(50%_100%_at_100%_100%,color-mix(in_oklch,var(--accent)_20%,transparent),transparent_55%),radial-gradient(45%_90%_at_25%_100%,color-mix(in_oklch,var(--rose)_16%,transparent),transparent_55%)]"
       />
       {/* grid lines, gently panning */}
       <div
@@ -55,7 +55,7 @@ export function HomeHero() {
           className="mt-5 max-w-3xl text-4xl font-semibold leading-[1.05] tracking-tight text-balance sm:text-6xl"
         >
           Building drones and rockets, and the{' '}
-          <span className="text-accent">flight control systems</span> that fly them.
+          <span className="text-gradient-warm">flight control systems</span> that fly them.
         </motion.h1>
         <motion.p
           variants={item}
@@ -75,7 +75,7 @@ export function HomeHero() {
           >
             <Link
               href="/projects"
-              className="shine group inline-flex items-center gap-2 rounded-md bg-accent px-5 py-2.5 text-sm font-medium text-accent-foreground shadow-sm"
+              className="shine group inline-flex items-center gap-2 rounded-md bg-gradient-warm px-5 py-2.5 text-sm font-medium text-accent-foreground shadow-sm shadow-accent/20"
             >
               Browse projects
               <ArrowRight className="size-4 transition-transform duration-300 group-hover:translate-x-1" />

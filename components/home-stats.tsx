@@ -64,7 +64,7 @@ export function HomeStats() {
       >
         {stats.map((stat) => (
           <motion.div key={stat.label} variants={item} className="group px-5 py-8">
-            <p className="font-mono text-3xl font-semibold tracking-tight text-foreground transition-colors group-hover:text-sky">
+            <p className="text-gradient-cool font-mono text-3xl font-semibold tracking-tight">
               <CountUp value={stat.value} />
             </p>
             <p className="mt-1 text-sm text-muted-foreground">{stat.label}</p>
