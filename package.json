@@ -6,7 +6,12 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "project": "node scripts/project.mjs",
+    "project:list": "node scripts/project.mjs list",
+    "project:new": "node scripts/project.mjs new",
+    "project:edit": "node scripts/project.mjs edit",
+    "project:delete": "node scripts/project.mjs delete"
   },
   "dependencies": {
     "@base-ui/react": "^1.5.0",
