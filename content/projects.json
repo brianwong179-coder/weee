@@ -1,0 +1,321 @@
+[
+  {
+    "slug": "vega-1-quadcopter",
+    "title": "Vega-1 Quadcopter",
+    "category": "Drone",
+    "tagline": "A 5-inch carbon freestyle quad built for low-latency FPV.",
+    "summary": "A hand-tuned 5\" freestyle quadcopter on a carbon frame, running a custom PID profile for crisp propwash handling and sub-10ms video latency.",
+    "status": "Flying",
+    "year": "2025",
+    "cover": "/projects/quadcopter.png",
+    "stack": [
+      "Betaflight",
+      "ELRS 915MHz",
+      "DJI O3 Air Unit",
+      "BLHeli_32"
+    ],
+    "specs": [
+      {
+        "label": "Frame",
+        "value": "5\" carbon, 22mm arms"
+      },
+      {
+        "label": "All-up weight",
+        "value": "640 g"
+      },
+      {
+        "label": "Motors",
+        "value": "2207 1900KV"
+      },
+      {
+        "label": "Flight time",
+        "value": "~6.5 min"
+      },
+      {
+        "label": "Control link",
+        "value": "ExpressLRS 915MHz"
+      },
+      {
+        "label": "Top speed",
+        "value": "138 km/h"
+      }
+    ],
+    "sections": [
+      {
+        "heading": "Design goals",
+        "body": [
+          "Vega-1 started as an exercise in reducing control latency end to end — from stick input to motor response to the video feed reaching my goggles. The target was a quad that felt telepathic in freestyle without becoming twitchy in wind.",
+          "I settled on a 22mm-thick arm carbon frame to survive hard tumbles, paired with 2207 motors that give enough authority for power loops while staying efficient on a 6S pack."
+        ]
+      },
+      {
+        "heading": "Tuning notes",
+        "body": [
+          "The stock Betaflight tune had noticeable propwash oscillation on descents. Dropping D-term filtering delay and raising the dynamic notch Q cleaned up the response without introducing hot motors.",
+          "Rates are set to 900 deg/s with a soft center for precision on gap lines, then aggressive expo past 70% stick for flips."
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "aether-vtol",
+    "title": "Aether VTOL",
+    "category": "Drone",
+    "tagline": "A tilt-rotor fixed-wing that hovers on takeoff and cruises on wing.",
+    "summary": "A vertical-takeoff fixed-wing aircraft that transitions from multirotor hover to efficient forward flight, extending range to over 40 minutes.",
+    "status": "In Development",
+    "year": "2025",
+    "cover": "/projects/vtol.png",
+    "stack": [
+      "ArduPilot",
+      "Pixhawk 6C",
+      "QuadPlane VTOL",
+      "Here3 GPS"
+    ],
+    "specs": [
+      {
+        "label": "Wingspan",
+        "value": "1.6 m"
+      },
+      {
+        "label": "Config",
+        "value": "Tilt-rotor QuadPlane"
+      },
+      {
+        "label": "Cruise speed",
+        "value": "19 m/s"
+      },
+      {
+        "label": "Endurance",
+        "value": "42 min"
+      },
+      {
+        "label": "Autopilot",
+        "value": "Pixhawk 6C"
+      },
+      {
+        "label": "Payload",
+        "value": "400 g"
+      }
+    ],
+    "sections": [
+      {
+        "heading": "Why VTOL",
+        "body": [
+          "Fixed-wing gives efficiency and range, but needs a runway. Multirotors are convenient but power-hungry. Aether is my attempt at the best of both: it takes off vertically, tilts its front rotors forward, and transitions onto the wing for cruise.",
+          "The hardest part is the transition window — the moment where the wing is not yet producing full lift but the rotors are tilting away from vertical thrust."
+        ]
+      },
+      {
+        "heading": "Transition logic",
+        "body": [
+          "ArduPilot handles the QuadPlane state machine, but the airspeed threshold for transition had to be tuned carefully against a real pitot reading. Too early and it mushes; too late and it wastes battery hovering.",
+          "Current builds transition cleanly at 14 m/s with a 3-second tilt ramp."
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "ascent-2-rocket",
+    "title": "Ascent-2 Sounding Rocket",
+    "category": "Rocket",
+    "tagline": "A dual-deploy high-power rocket targeting 10,000 ft on an L-class motor.",
+    "summary": "A carbon-airframe high-power rocket with dual-deploy recovery and an onboard flight computer logging the full ascent to apogee.",
+    "status": "Flying",
+    "year": "2024",
+    "cover": "/projects/rocket.png",
+    "stack": [
+      "L1000 motor",
+      "Dual-deploy",
+      "Kalman altimeter",
+      "Fiberglass fins"
+    ],
+    "specs": [
+      {
+        "label": "Length",
+        "value": "2.1 m"
+      },
+      {
+        "label": "Diameter",
+        "value": "98 mm"
+      },
+      {
+        "label": "Motor",
+        "value": "L1000 (4-grain)"
+      },
+      {
+        "label": "Target apogee",
+        "value": "10,200 ft"
+      },
+      {
+        "label": "Max velocity",
+        "value": "Mach 0.9"
+      },
+      {
+        "label": "Recovery",
+        "value": "Dual-deploy"
+      }
+    ],
+    "sections": [
+      {
+        "heading": "Airframe",
+        "body": [
+          "Ascent-2 uses a filament-wound carbon airframe for stiffness at transonic speeds, with G10 fiberglass fins bonded through the wall to the motor mount for shear strength.",
+          "The nose cone houses the recovery electronics bay, isolated from the motor by a bulkhead rated well above expected ejection pressures."
+        ]
+      },
+      {
+        "heading": "Recovery",
+        "body": [
+          "Dual-deploy keeps drift manageable: a drogue chute pops at apogee to bring the rocket down fast and stable, then the main deploys at 700 ft AGL for a soft landing.",
+          "The flight computer runs a Kalman filter fusing barometric and accelerometer data so ejection charges fire on true apogee, not on noisy pressure spikes."
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "helios-flight-controller",
+    "title": "Helios Flight Controller",
+    "category": "Flight Control",
+    "tagline": "A custom STM32 flight controller board designed from schematic to firmware.",
+    "summary": "A ground-up flight controller PCB built around an STM32H7, dual IMUs, and a barometer — the shared brain behind several of my airframes.",
+    "status": "Bench Testing",
+    "year": "2025",
+    "cover": "/projects/flight-controller.png",
+    "stack": [
+      "STM32H743",
+      "Dual ICM-42688",
+      "PX4 / Custom",
+      "KiCad"
+    ],
+    "specs": [
+      {
+        "label": "MCU",
+        "value": "STM32H743 480MHz"
+      },
+      {
+        "label": "IMU",
+        "value": "Dual ICM-42688-P"
+      },
+      {
+        "label": "Baro",
+        "value": "DPS310"
+      },
+      {
+        "label": "Loop rate",
+        "value": "8 kHz"
+      },
+      {
+        "label": "UARTs",
+        "value": "7 (inverter-free)"
+      },
+      {
+        "label": "Board size",
+        "value": "36 x 36 mm"
+      }
+    ],
+    "sections": [
+      {
+        "heading": "From schematic to board",
+        "body": [
+          "Helios is my first flight controller designed entirely in KiCad — power tree, sensor routing, and a 4-layer stackup with a dedicated ground plane to keep the IMUs quiet.",
+          "Two IMUs sit on soft-mounted pads with slightly different orientations, so firmware can vote against a bad sensor and reject frame resonance."
+        ]
+      },
+      {
+        "heading": "Firmware",
+        "body": [
+          "The board boots both a stripped-down custom firmware for bench testing and PX4 for the larger airframes. Getting the gyro loop stable at 8 kHz meant carefully budgeting DMA transfers so the SPI reads never stalled the control loop.",
+          "Next milestone is closing the loop on a test bench gimbal before it flies anything expensive."
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "nimbus-autopilot-stack",
+    "title": "Nimbus Autopilot Stack",
+    "category": "Flight Control",
+    "tagline": "A telemetry + mission software layer that ties my aircraft together.",
+    "summary": "A ground-station and telemetry stack that streams live flight data, plans autonomous missions, and replays logs for post-flight tuning.",
+    "status": "In Development",
+    "year": "2025",
+    "cover": "/projects/flight-controller.png",
+    "stack": [
+      "MAVLink",
+      "Rust telemetry",
+      "React dashboard",
+      "InfluxDB"
+    ],
+    "specs": [
+      {
+        "label": "Protocol",
+        "value": "MAVLink 2"
+      },
+      {
+        "label": "Telemetry",
+        "value": "10 Hz downlink"
+      },
+      {
+        "label": "Backend",
+        "value": "Rust + InfluxDB"
+      },
+      {
+        "label": "Frontend",
+        "value": "React map UI"
+      },
+      {
+        "label": "Logging",
+        "value": "Full-rate replay"
+      },
+      {
+        "label": "Link",
+        "value": "915MHz + LTE"
+      }
+    ],
+    "sections": [
+      {
+        "heading": "The problem",
+        "body": [
+          "Every airframe I build produces logs, but they lived in different formats and tools. Nimbus is my attempt to unify them: one telemetry pipeline, one dashboard, one log format I actually enjoy reading.",
+          "A Rust service ingests the MAVLink stream, writes it to a time-series database, and pushes live updates to a React map interface."
+        ]
+      },
+      {
+        "heading": "Mission planning",
+        "body": [
+          "Beyond monitoring, Nimbus lets me draw waypoint missions on a map and upload them to an ArduPilot or PX4 vehicle, then watch execution against the plan in real time.",
+          "The replay mode has already saved me hours of tuning by scrubbing through exactly where a tune went wrong."
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "yurs",
+    "title": "yurs",
+    "category": "Flight Control",
+    "tagline": "ywu",
+    "summary": "hmmy es i think fancy",
+    "status": "Bench Testing",
+    "year": "1977",
+    "cover": "/projects/blahaj-yeeter.jpg",
+    "stack": [
+      "yes",
+      "no",
+      "uwu"
+    ],
+    "specs": [
+      {
+        "label": "hmm",
+        "value": "yes i think so"
+      }
+    ],
+    "sections": [
+      {
+        "heading": "yes",
+        "body": [
+          "no but yes"
+        ]
+      }
+    ]
+  }
+]
