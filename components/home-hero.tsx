@@ -3,6 +3,7 @@
 import Link from 'next/link'
 import { ArrowRight } from 'lucide-react'
 import { motion, useReducedMotion, type Variants } from 'motion/react'
+import { SunriseBackdrop } from '@/components/sunrise-backdrop'
 
 const EASE = [0.22, 1, 0.36, 1] as const
 
@@ -23,51 +24,44 @@ export function HomeHero() {
   const item = itemVariants(reduce)
 
   return (
-    <section className="relative overflow-hidden border-b border-border">
-      {/* colored backdrop, slowly drifting */}
-      <div
-        aria-hidden="true"
-        className="animate-aurora pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(55%_110%_at_12%_0%,color-mix(in_oklch,var(--teal)_22%,transparent),transparent_55%),radial-gradient(45%_90%_at_85%_10%,color-mix(in_oklch,var(--sky)_20%,transparent),transparent_55%),radial-gradient(50%_100%_at_100%_100%,color-mix(in_oklch,var(--accent)_20%,transparent),transparent_55%),radial-gradient(45%_90%_at_25%_100%,color-mix(in_oklch,var(--rose)_16%,transparent),transparent_55%)]"
-      />
-      {/* grid lines, gently panning */}
-      <div
-        aria-hidden="true"
-        className="animate-grid-pan pointer-events-none absolute inset-0 -z-10 opacity-[0.4] [background-image:linear-gradient(to_right,var(--border)_1px,transparent_1px),linear-gradient(to_bottom,var(--border)_1px,transparent_1px)] [background-size:56px_56px] [mask-image:radial-gradient(80%_80%_at_50%_20%,black,transparent)]"
-      />
+    <section className="relative overflow-hidden border-b border-black/10 text-neutral-900">
+      <SunriseBackdrop />
+
       <motion.div
-        className="mx-auto max-w-6xl px-5 py-20 sm:py-28"
+        className="relative z-10 mx-auto flex min-h-[88vh] max-w-6xl flex-col justify-center px-5 py-24 sm:py-32"
         variants={container}
         initial="hidden"
         animate="show"
       >
         <motion.p
           variants={item}
-          className="inline-flex items-center gap-2 rounded-full border border-accent/30 bg-accent/10 px-3 py-1 font-mono text-sm text-accent"
+          className="inline-flex w-fit items-center gap-2 rounded-full border border-black/15 bg-white/30 px-3 py-1 font-mono text-sm text-neutral-800 backdrop-blur-sm"
         >
           <span
-            className="animate-pulse-ring size-1.5 rounded-full bg-accent"
+            className="size-1.5 rounded-full bg-neutral-900"
             aria-hidden="true"
           />
           engineering log
         </motion.p>
+
         <motion.h1
           variants={item}
-          className="mt-5 max-w-3xl text-4xl font-semibold leading-[1.05] tracking-tight text-balance sm:text-6xl"
+          className="mt-6 max-w-5xl text-5xl font-bold leading-[0.95] tracking-[-0.03em] text-balance sm:text-7xl lg:text-8xl"
         >
-          Building drones and rockets, and the{' '}
-          <span className="text-gradient-warm">flight control systems</span> that fly them.
+          Building drones, rockets &amp; the systems that fly them.
         </motion.h1>
+
         <motion.p
           variants={item}
-          className="mt-6 max-w-2xl text-lg leading-relaxed text-muted-foreground text-pretty"
+          className="mt-8 max-w-2xl text-lg leading-relaxed text-neutral-700 text-pretty sm:text-xl"
           style={{ fontFamily: '"Montserrat", sans-serif' }}
         >
-          I&apos;m Brian, currently a Year 12 High School student in Sydney working on
-          robotics and aerospace projects. You&apos;ll find all my current projects on this
-          blog, everything from high power rockets to self flying drones, and even the
-          autopilot systems within.
+          I&apos;m Brian, a Year 12 student in Sydney building robotics and aerospace
+          projects. This is my open build log — high-power rockets, self-flying drones,
+          and the autopilot systems behind them.
         </motion.p>
-        <motion.div variants={item} className="mt-8 flex flex-wrap items-center gap-3">
+
+        <motion.div variants={item} className="mt-10 flex flex-wrap items-center gap-3">
           <motion.div
             whileHover={reduce ? undefined : { scale: 1.03 }}
             whileTap={reduce ? undefined : { scale: 0.97 }}
@@ -75,7 +69,7 @@ export function HomeHero() {
           >
             <Link
               href="/projects"
-              className="shine group inline-flex items-center gap-2 rounded-md bg-gradient-warm px-5 py-2.5 text-sm font-medium text-accent-foreground shadow-sm shadow-accent/20"
+              className="shine group inline-flex items-center gap-2 rounded-full bg-neutral-900 px-6 py-3 text-sm font-medium text-white shadow-lg shadow-black/10"
             >
               Browse projects
               <ArrowRight className="size-4 transition-transform duration-300 group-hover:translate-x-1" />
@@ -88,7 +82,7 @@ export function HomeHero() {
           >
             <Link
               href="/#about"
-              className="inline-flex items-center gap-2 rounded-md border border-border px-5 py-2.5 text-sm font-medium transition-colors hover:bg-secondary"
+              className="inline-flex items-center gap-2 rounded-full border border-black/20 bg-white/40 px-6 py-3 text-sm font-medium text-neutral-900 backdrop-blur-sm transition-colors hover:bg-white/70"
             >
               About the log
             </Link>
